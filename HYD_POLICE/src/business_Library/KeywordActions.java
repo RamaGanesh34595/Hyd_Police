@@ -1,5 +1,12 @@
 package business_Library;
 
+import java.awt.Desktop.Action;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,6 +17,8 @@ import org.openqa.selenium.support.ui.Select;
 import util_Base.Base_Util;
 
 public class KeywordActions extends Base_Util {
+
+	public static KeywordActions Action;
 
 	public static void executeKeyword(String testName) {
 		try {
@@ -65,6 +74,21 @@ public class KeywordActions extends Base_Util {
 
 	}
 
+	public KeywordActions() throws IOException {
+		prop = new Properties();
+		File file = new File("C:\\Users\\User\\git\\repository\\HYD_POLICE\\src\\config_Data\\Object_Xpath.properties");
+		FileInputStream fis = new FileInputStream(file);
+		prop.load(fis);
+	}
+
+	public static KeywordActions getActionInstance() throws Exception {
+
+		if (Action == null) {
+			Action = new KeywordActions();
+		}
+		return Action;
+	}
+
 	// Launch browser
 	public static String openBrowser(String Browser) {
 		try {
@@ -77,7 +101,7 @@ public class KeywordActions extends Base_Util {
 				System.setProperty("webdriver.gecko.driver",
 						"D:\\Automation_WorkSpace\\HYD_POLICE\\config_Drivers\\geckodriver.exe");
 				driver = new FirefoxDriver();
-				
+
 			} else if (Browser.equalsIgnoreCase("Opera")) {
 				System.setProperty("webdriver.opera.driver",
 						"D:\\Automation_WorkSpace\\HYD_POLICE\\config_Drivers\\operadriver.exe");
@@ -112,7 +136,7 @@ public class KeywordActions extends Base_Util {
 	// enter text value
 	public static String enterText(String xpathValue, String enterVale) {
 		try {
-			element = driver.findElement(By.xpath(xpathValue));
+			element = driver.findElement(By.xpath(prop.getProperty(xpathValue)));
 			element.sendKeys(enterVale);
 			System.out.println("User is able to enter " + enterVale + " value");
 			return "PASS";
