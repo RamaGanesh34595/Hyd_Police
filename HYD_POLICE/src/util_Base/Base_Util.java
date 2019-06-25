@@ -18,10 +18,12 @@ public class Base_Util {
 	public static String objectXpath;
 	public static String testData;
 	public static String result = null;
-	public static String Browser;
-	/*public static String url;
-	public static String xpathValue;
+	
+	public static String USERNAME = "//*[@id='username']";	
+	public static String PASSWORD = "//*[@id=\'password\']";
+	public static String LOGIN_BUTTON = "//*[@id=\'login-3\']/p[3]/input";
+	
 	public static String enterVale;
-	public static String btnValue;*/
+	public static String btnValue;
 	
 }
