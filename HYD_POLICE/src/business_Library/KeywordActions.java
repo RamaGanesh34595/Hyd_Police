@@ -168,7 +168,7 @@ public class KeywordActions extends Base_Util {
 	// Click Link
 	public static String clickLink(String LinkValue) {
 		try {
-			element = driver.findElement(By.xpath(LinkValue));
+			element = driver.findElement(By.xpath(prop.getProperty(LinkValue)));
 			element.click();
 			System.out.println("User is able to click on Link");
 			return "PASS";
@@ -182,9 +182,9 @@ public class KeywordActions extends Base_Util {
 	// Select an item from the dropdowns
 	public static String selectItem(String xpathValue, String selectValue) {
 		try {
-			element = driver.findElement(By.xpath(xpathValue));
+			element = driver.findElement(By.xpath(prop.getProperty(xpathValue)));
 			Select select = new Select(element);
-			select.selectByVisibleText(selectValue);
+			select.selectByVisibleText(prop.getProperty(selectValue));
 			return "PASS";
 		} catch (Exception k) {
 			k.printStackTrace();
@@ -195,7 +195,7 @@ public class KeywordActions extends Base_Util {
 	// MouseHover
 	public static String mouseHover(String MenuLink) {
 		try {
-			element = driver.findElement(By.xpath(MenuLink));
+			element = driver.findElement(By.xpath(prop.getProperty(MenuLink)));
 			Actions action = new Actions(driver);
 			action.moveToElement(element).build().perform();
 

@@ -2,6 +2,8 @@ package test_Cases;
 
 import java.io.IOException;
 
+import org.testng.annotations.Test;
+
 import business_Library.KeywordActions;
 
 public class TestCase_002 extends KeywordActions {
@@ -11,10 +13,10 @@ public class TestCase_002 extends KeywordActions {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void main(String[] args) {
-		executeKeyword("TestCase_002");
-		
-
+	@Test
+	public void LoginMethod() throws Exception {		
+		KeywordActions a = KeywordActions.getActionInstance();
+		a.executeKeyword("TestCase_002");
 	}
 
 }

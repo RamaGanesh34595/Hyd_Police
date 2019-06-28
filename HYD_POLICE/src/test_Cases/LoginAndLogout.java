@@ -6,9 +6,9 @@ import org.testng.annotations.Test;
 
 import business_Library.KeywordActions;
 
-public class TestCase_001 extends KeywordActions{
+public class LoginAndLogout extends KeywordActions{
 
-	public TestCase_001() throws IOException {
+	public LoginAndLogout() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -16,6 +16,6 @@ public class TestCase_001 extends KeywordActions{
 	@Test
 	public void LoginMethod() throws Exception {		
 		KeywordActions a = KeywordActions.getActionInstance();
-		a.executeKeyword("TestCase_001");
+		a.executeKeyword("LoginAndLogout");
 	}
 }

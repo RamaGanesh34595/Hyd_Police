@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Hyderabad Police]">
+  <test name="Hyderabad Police Login and Logout Scenario(failed)">
+    <classes>
+      <class name="test_Cases.TestCase_002">
+        <methods>
+          <include name="main"/>
+        </methods>
+      </class> <!-- test_Cases.TestCase_002 -->
+    </classes>
+  </test> <!-- Hyderabad Police Login and Logout Scenario(failed) -->
+</suite> <!-- Failed suite [Hyderabad Police] -->
