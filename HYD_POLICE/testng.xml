@@ -4,8 +4,9 @@
 
 	<test name="Hyderabad Police Login and Logout Scenario">
 		<classes>
-			<class name="test_Cases.TestCase_001"></class>
+			<class name="test_Cases.TestCase_002"></class>
 		</classes>
-	</test>	
+	</test>
 
-</suite> <!-- Suite -->
+</suite>
+<!-- Suite -->

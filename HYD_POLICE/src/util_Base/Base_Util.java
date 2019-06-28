@@ -1,6 +1,8 @@
 package util_Base;
 
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,5 +25,10 @@ public class Base_Util {
 	public static String objectXpath;
 	public static String testData;
 	public static String result = null;
+	
+	// Window Handles
+	public static String mainwindow;
+	public static Set<String> s;
+	public static Iterator<String> itr;
 	
 }

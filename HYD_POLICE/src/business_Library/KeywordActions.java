@@ -1,18 +1,18 @@
+
 package business_Library;
 
-import java.awt.Desktop.Action;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import util_Base.Base_Util;
 
@@ -30,8 +30,7 @@ public class KeywordActions extends Base_Util {
 				if (testName.equalsIgnoreCase(testcaseName)) {
 
 					runMode = xls.getCellData("TestSteps", "Run_Mode", rowNum);
-					if (runMode.equalsIgnoreCase("Y")) {
-
+					if (runMode.equalsIgnoreCase("Y")) {	
 						actionKeyword = xls.getCellData("TestSteps", "Action_Keyword", rowNum);
 						objectXpath = xls.getCellData("TestSteps", "Object_Xpath", rowNum);
 						testData = xls.getCellData("TestSteps", "Test_Data", rowNum);
@@ -58,14 +57,17 @@ public class KeywordActions extends Base_Util {
 							result = clickLink(objectXpath);
 
 						if (actionKeyword.equalsIgnoreCase("waitTime"))
-							result = waitTime();
+							result = waitTime(testData);
 
 						if (actionKeyword.equalsIgnoreCase("closeBrower"))
 							result = closeBrower();
-
+					xls.setCellData("TestSteps", "Results", rowNum, result);			
 					}
+				else {
+					xls.setCellData("TestSteps", "Results", rowNum, "SKIP");
 				}
-				xls.setCellData("TestSteps", "Results", rowNum, result);
+				
+				}
 			}
 
 		} catch (Exception a) {
@@ -74,6 +76,7 @@ public class KeywordActions extends Base_Util {
 
 	}
 
+	
 	public KeywordActions() throws IOException {
 		prop = new Properties();
 		File file = new File("C:\\Users\\User\\git\\repository\\HYD_POLICE\\src\\config_Data\\Object_Xpath.properties");
@@ -81,6 +84,7 @@ public class KeywordActions extends Base_Util {
 		prop.load(fis);
 	}
 
+	
 	public static KeywordActions getActionInstance() throws Exception {
 
 		if (Action == null) {
@@ -119,7 +123,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// navigate url
+	// Navigate url
 	public static String navigateUrl(String url) {
 		try {
 			driver.get(url);
@@ -133,7 +137,7 @@ public class KeywordActions extends Base_Util {
 
 	}
 
-	// enter text value
+	// Enter text value
 	public static String enterText(String xpathValue, String enterVale) {
 		try {
 			element = driver.findElement(By.xpath(prop.getProperty(xpathValue)));
@@ -147,10 +151,10 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// click button
+	// Click button
 	public static String clickButton(String btnValue) {
 		try {
-			element = driver.findElement(By.xpath(btnValue));
+			element = driver.findElement(By.xpath(prop.getProperty(btnValue)));
 			element.click();
 			System.out.println("User is able to click on button");
 			return "PASS";
@@ -175,7 +179,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// select item
+	// Select an item from the dropdowns
 	public static String selectItem(String xpathValue, String selectValue) {
 		try {
 			element = driver.findElement(By.xpath(xpathValue));
@@ -204,10 +208,12 @@ public class KeywordActions extends Base_Util {
 			return "FAIL";
 		}
 	}
-
-	public static String waitTime() throws Exception {
+	
+	// Wait Time
+	public static String waitTime(String waitSeconds) throws Exception {
 		try {
-			Thread.sleep(4000);
+			int waitTime = Integer.parseInt(waitSeconds);
+			Thread.sleep(waitTime);
 			return "PASS";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -215,7 +221,31 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// close browser
+	// Window Handles
+	public void windowHandles() throws Exception {
+
+		driver.findElement(By.xpath("Website")).click();
+		Thread.sleep(5000);
+		mainwindow = driver.getWindowHandle();
+		s = driver.getWindowHandles();
+		itr = s.iterator();
+		while (itr.hasNext()) {
+			String childwindow=itr.next();
+			if (!mainwindow.equalsIgnoreCase(childwindow)) {
+				driver.switchTo().window(childwindow);
+			}
+
+		}
+		WebElement element=driver.findElement(By.linkText("History"));
+		Assert.assertEquals(element.isDisplayed(), true);
+		element.click();
+		driver.close();
+		driver.switchTo().window(mainwindow);
+		driver.findElement(By.linkText("Website")).click();
+
+	}
+	
+	// Close browser
 	public static String closeBrower() {
 		try {
 			driver.close();
