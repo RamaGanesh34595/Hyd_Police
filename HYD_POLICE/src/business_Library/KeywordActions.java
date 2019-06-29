@@ -249,8 +249,7 @@ public class KeywordActions extends Base_Util {
 	public static String closeBrower() {
 		try {
 			driver.close();
-			driver.quit();
-
+			//driver.quit();
 			System.out.println("User is able to close the browser");
 			return "PASS";
 		} catch (Exception h) {
