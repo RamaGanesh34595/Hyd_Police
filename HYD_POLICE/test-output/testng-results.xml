@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Hyderabad Police" duration-ms="93218" started-at="2019-06-28T16:25:45Z" finished-at="2019-06-28T16:27:19Z">
+  <suite name="Hyderabad Police" duration-ms="89362" started-at="2019-06-29T06:58:10Z" finished-at="2019-06-29T06:59:39Z">
     <groups>
     </groups>
-    <test name="Hyderabad Police Login and Logout Scenario" duration-ms="93218" started-at="2019-06-28T16:25:45Z" finished-at="2019-06-28T16:27:19Z">
+    <test name="Hyderabad Police Login and Logout Scenario" duration-ms="89362" started-at="2019-06-29T06:58:10Z" finished-at="2019-06-29T06:59:39Z">
       <class name="test_Cases.TestCase_002">
-        <test-method status="PASS" signature="LoginMethod()[pri:0, instance:test_Cases.TestCase_002@11a9e7c8]" name="LoginMethod" duration-ms="93197" started-at="2019-06-28T21:55:46Z" finished-at="2019-06-28T21:57:19Z">
+        <test-method status="PASS" signature="LoginMethod()[pri:0, instance:test_Cases.TestCase_002@65d6b83b]" name="LoginMethod" duration-ms="89302" started-at="2019-06-29T12:28:10Z" finished-at="2019-06-29T12:29:39Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginMethod -->
