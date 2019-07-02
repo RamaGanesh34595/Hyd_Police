@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="91463" started-at="2019-07-01T15:33:33Z" finished-at="2019-07-01T15:35:04Z">
+  <suite name="Hyderabad Police" duration-ms="83206" started-at="2019-07-02T06:39:24Z" finished-at="2019-07-02T06:40:48Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="91463" started-at="2019-07-01T15:33:33Z" finished-at="2019-07-01T15:35:04Z">
+    <test name="Hyderabad Police Login and Logout Scenario" duration-ms="83206" started-at="2019-07-02T06:39:24Z" finished-at="2019-07-02T06:40:48Z">
       <class name="test_Cases.Add_User">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:test_Cases.Add_User@309e345f]" name="beforeTest" is-config="true" duration-ms="331" started-at="2019-07-01T21:03:33Z" finished-at="2019-07-01T21:03:33Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:test_Cases.Add_User@4386f16]" name="beforeTest" is-config="true" duration-ms="158" started-at="2019-07-02T12:09:24Z" finished-at="2019-07-02T12:09:25Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="LoginMethod()[pri:0, instance:test_Cases.Add_User@309e345f]" name="LoginMethod" duration-ms="90492" started-at="2019-07-01T21:03:33Z" finished-at="2019-07-01T21:05:04Z">
+        <test-method status="PASS" signature="LoginMethod()[pri:0, instance:test_Cases.Add_User@4386f16]" name="LoginMethod" duration-ms="82579" started-at="2019-07-02T12:09:25Z" finished-at="2019-07-02T12:10:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginMethod -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:test_Cases.Add_User@309e345f]" name="afterTest" is-config="true" duration-ms="632" started-at="2019-07-01T21:05:04Z" finished-at="2019-07-01T21:05:04Z">
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:test_Cases.Add_User@4386f16]" name="afterTest" is-config="true" duration-ms="459" started-at="2019-07-02T12:10:47Z" finished-at="2019-07-02T12:10:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
       </class> <!-- test_Cases.Add_User -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Hyderabad Police Login and Logout Scenario -->
+  </suite> <!-- Hyderabad Police -->
 </testng-results>
