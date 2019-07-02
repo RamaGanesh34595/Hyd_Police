@@ -6,13 +6,16 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import business_Library.KeywordActions;
 
-public class LoginAndLogout extends KeywordActions{
+public class Add_User extends KeywordActions {
 
-	public LoginAndLogout() throws IOException {
+	public Add_User() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -20,16 +23,20 @@ public class LoginAndLogout extends KeywordActions{
 	@Test
 	public void LoginMethod() throws Exception {		
 		KeywordActions a = KeywordActions.getActionInstance();
-		a.executeKeyword("LoginAndLogout");
+		a.executeKeyword("TestCase_002");
 	}
 	
 	@BeforeTest
 	public void beforeTest() {
-		test = extent.createTest("Hyderabad Police Login Module", "This is a validate statement");
+		htmlRporter = new ExtentHtmlReporter("extent_Reports.html");
+		extent = new ExtentReports();
+		extent.attachReporter(htmlRporter);
+		test  = extent.createTest("Google Search test one", "This is a validate google statement");
 	}
 	
 	@AfterTest
 	public void afterTest() {
 		extent.flush();
 	}
+
 }

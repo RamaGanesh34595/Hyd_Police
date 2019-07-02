@@ -7,6 +7,10 @@ import java.util.Set;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
 import Xls_Reader.Xls_Reader;
 
 public class Base_Util {
@@ -30,5 +34,20 @@ public class Base_Util {
 	public static String mainwindow;
 	public static Set<String> s;
 	public static Iterator<String> itr;
+	
+	public static String exceldata;
+	public static String AppVal;
+	public static String drAsstWin;
+	public static WebDriver driverAssit;
+	public static String drInst;
+	public static WebElement sliderIframe = null ;
+	
+	// Extent Reports
+	public static ExtentHtmlReporter htmlRporter;
+	public static ExtentReports extent;
+	
+	public static ExtentTest test;
+	 //= extent.createTest("Google Search test one", "This is a validate google statement");
+
 	
 }

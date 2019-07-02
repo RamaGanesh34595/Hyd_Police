@@ -4,16 +4,31 @@ package business_Library;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
+import test_Cases.extent_Reports;
 import util_Base.Base_Util;
 
 public class KeywordActions extends Base_Util {
@@ -22,7 +37,6 @@ public class KeywordActions extends Base_Util {
 
 	public static void executeKeyword(String testName) {
 		try {
-
 			rowCount = xls.getRowCount("TestSteps");
 			for (rowNum = 2; rowNum <= rowCount; rowNum++) {
 
@@ -30,7 +44,7 @@ public class KeywordActions extends Base_Util {
 				if (testName.equalsIgnoreCase(testcaseName)) {
 
 					runMode = xls.getCellData("TestSteps", "Run_Mode", rowNum);
-					if (runMode.equalsIgnoreCase("Y")) {	
+					if (runMode.equalsIgnoreCase("Y")) {
 						actionKeyword = xls.getCellData("TestSteps", "Action_Keyword", rowNum);
 						objectXpath = xls.getCellData("TestSteps", "Object_Xpath", rowNum);
 						testData = xls.getCellData("TestSteps", "Test_Data", rowNum);
@@ -61,12 +75,16 @@ public class KeywordActions extends Base_Util {
 
 						if (actionKeyword.equalsIgnoreCase("closeBrower"))
 							result = closeBrower();
-					xls.setCellData("TestSteps", "Results", rowNum, result);			
+						
+						xls.setCellData("TestSteps", "Results", rowNum, result);
+						test.log(Status.INFO, result);
+						
+						
+					} else {
+						xls.setCellData("TestSteps", "Results", rowNum, "SKIP");
+						test.log(Status.INFO, "SKIP");
 					}
-				else {
-					xls.setCellData("TestSteps", "Results", rowNum, "SKIP");
-				}
-				
+
 				}
 			}
 
@@ -76,7 +94,6 @@ public class KeywordActions extends Base_Util {
 
 	}
 
-	
 	public KeywordActions() throws IOException {
 		prop = new Properties();
 		File file = new File("C:\\Users\\User\\git\\repository\\HYD_POLICE\\src\\config_Data\\Object_Xpath.properties");
@@ -84,7 +101,6 @@ public class KeywordActions extends Base_Util {
 		prop.load(fis);
 	}
 
-	
 	public static KeywordActions getActionInstance() throws Exception {
 
 		if (Action == null) {
@@ -95,32 +111,39 @@ public class KeywordActions extends Base_Util {
 
 	// Launch browser
 	public static String openBrowser(String Browser) {
+
 		try {
 			if (Browser.equalsIgnoreCase("Chrome")) {
 				System.setProperty("webdriver.chrome.driver",
 						"C:\\Users\\User\\git\\repository\\HYD_POLICE\\config_Drivers\\chromedriver.exe");
 				driver = new ChromeDriver();
+				// test.log(Status.INFO, "Browser has initiated");
 
 			} else if (Browser.equalsIgnoreCase("Firefox")) {
 				System.setProperty("webdriver.gecko.driver",
 						"D:\\Automation_WorkSpace\\HYD_POLICE\\config_Drivers\\geckodriver.exe");
 				driver = new FirefoxDriver();
+				// test.log(Status.INFO, "Browser has initiated");
 
 			} else if (Browser.equalsIgnoreCase("Opera")) {
 				System.setProperty("webdriver.opera.driver",
 						"D:\\Automation_WorkSpace\\HYD_POLICE\\config_Drivers\\operadriver.exe");
 				driver = new OperaDriver();
+				// test.log(Status.INFO, "Browser has initiated");
 			}
 
 			driver.manage().window().maximize();
+			//test.log(Status.INFO, "Browser has initiated");
 			System.out.println("User is able to open a browser");
-			return "PASS";
+			return "PASS - User is able to open " + Browser + " browser";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("User is not able to open a browser");
-			return "FAIL";
+			// test.log(Status.INFO, "Browser has not initiated");
+			return "FAIL - User is able to open " + Browser + " browser";
 		}
+
 	}
 
 	// Navigate url
@@ -135,6 +158,146 @@ public class KeywordActions extends Base_Util {
 			return "FAIL";
 		}
 
+	}
+
+	public static String newTab() {
+		try {
+			WebElement body = driver.findElement(By.tagName("body"));
+			body.sendKeys(Keys.CONTROL + "t");
+			exceldata = "PASS ";
+			return exceldata;
+		} catch (Exception e) {
+			exceldata = "FAIL";
+			return exceldata;
+
+		}
+	}
+
+	public static String switchWindow(String app) {
+		try {
+			if (app.equalsIgnoreCase("Assist")) {
+				AppVal = "Assist";
+				drAsstWin = driverAssit.getWindowHandle();
+				driverAssit.switchTo().window(drAsstWin);
+				System.out.println("Assist window");
+			} else {
+				AppVal = "Visitor";
+				drInst = driver.getWindowHandle();
+				driver.switchTo().window(drInst);
+				System.out.println("Visitor window");
+			}
+			exceldata = "PASS" + AppVal;
+			return exceldata;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceldata = "FAIL--User is not able to switch to window" + AppVal;
+			return exceldata;
+		}
+	}
+
+	// taking screen shots:
+	public static String takeScreenShot(String val) {
+		try {
+
+			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(scrFile,
+					new File((System.getProperty("user.dir")) + "\\test-output\\ScreenShots\\SS_" + val + ".png"));
+			exceldata = "PASS--Screen shot saved to ScreenShots folder";
+			return exceldata;
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceldata = "FAIL--User is not able to take a screen shot";
+			return exceldata;
+		}
+	}
+
+	public static String alertHandle() {
+		try {
+			Alert alert = driverAssit.switchTo().alert();
+			alert.accept();
+			exceldata = "PASS--User accepted the alert";
+			return exceldata;
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceldata = "FAIL--Alert window is not closed";
+			return exceldata;
+		}
+	}
+
+	public static String iFrameBtnclick(String xobjpath) {
+		try {
+			while (true) {
+				element = driverAssit.findElement(By.xpath(prop.getProperty(xobjpath)));
+				if (element != null) {
+					break;
+				}
+			}
+			WebDriverWait waitt = new WebDriverWait(driverAssit, 80);
+			waitt.until(ExpectedConditions.visibilityOf(element));
+			element.click();
+			exceldata = "PASS--User clicked";
+			return exceldata;
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceldata = "FAIL--User is not able to click";
+			return exceldata;
+		}
+	}
+
+	public static String iFrameSwitch(String xobjpath, String app) {
+		try {
+			if (app.equalsIgnoreCase("assist")) {
+				Thread.sleep(4000);
+				WebElement ele = driverAssit.findElement(By.xpath(prop.getProperty(xobjpath)));
+				System.out.println("Element is " + ele);
+				System.out.println(ele.isEnabled());
+				driverAssit.switchTo().frame(ele);
+			} else {
+				driver.switchTo().frame(driver.findElement(By.xpath(prop.getProperty(xobjpath))));
+			}
+			exceldata = "PASS--User switched to iFrame";
+			return exceldata;
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceldata = "FAIL--User not able to switch to iFrame";
+			return exceldata;
+		}
+	}
+
+	public static String iFrameAlertclick(String xobjpath) {
+		try {
+			driverAssit.switchTo().frame(sliderIframe);
+			while (true) {
+				element = driverAssit.findElement(By.xpath(prop.getProperty(xobjpath)));
+				if (element != null) {
+					break;
+				}
+			}
+			element.click();
+			exceldata = "PASS--User closed alert popup";
+			return exceldata;
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceldata = "FAIL--User is not able to close alert popup";
+			return exceldata;
+		}
+	}
+
+	public static String tabHandling() {
+		try {
+			ArrayList<String> tabs = new ArrayList(driver.getWindowHandles());
+			System.out.println("Num of Tabs:::" + tabs.size());
+			driver.switchTo().window(tabs.get(1));
+
+			exceldata = "PASS--sfd";
+			return exceldata;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceldata = "FAIL--User is not able to switch to window";
+			return exceldata;
+		}
 	}
 
 	// Enter text value
@@ -208,7 +371,7 @@ public class KeywordActions extends Base_Util {
 			return "FAIL";
 		}
 	}
-	
+
 	// Wait Time
 	public static String waitTime(String waitSeconds) throws Exception {
 		try {
@@ -230,13 +393,13 @@ public class KeywordActions extends Base_Util {
 		s = driver.getWindowHandles();
 		itr = s.iterator();
 		while (itr.hasNext()) {
-			String childwindow=itr.next();
+			String childwindow = itr.next();
 			if (!mainwindow.equalsIgnoreCase(childwindow)) {
 				driver.switchTo().window(childwindow);
 			}
 
 		}
-		WebElement element=driver.findElement(By.linkText("History"));
+		WebElement element = driver.findElement(By.linkText("History"));
 		Assert.assertEquals(element.isDisplayed(), true);
 		element.click();
 		driver.close();
@@ -244,12 +407,12 @@ public class KeywordActions extends Base_Util {
 		driver.findElement(By.linkText("Website")).click();
 
 	}
-	
+
 	// Close browser
 	public static String closeBrower() {
 		try {
 			driver.close();
-			//driver.quit();
+			// driver.quit();
 			System.out.println("User is able to close the browser");
 			return "PASS";
 		} catch (Exception h) {
