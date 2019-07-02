@@ -77,12 +77,12 @@ public class KeywordActions extends Base_Util {
 							result = closeBrower();
 						
 						xls.setCellData("TestSteps", "Results", rowNum, result);
-						test.log(Status.INFO, result);
+						test.log(Status.PASS, result);
 						
 						
 					} else {
 						xls.setCellData("TestSteps", "Results", rowNum, "SKIP");
-						test.log(Status.INFO, "SKIP");
+						test.log(Status.PASS, "SKIP");
 					}
 
 				}
@@ -114,17 +114,17 @@ public class KeywordActions extends Base_Util {
 
 		try {
 			if (Browser.equalsIgnoreCase("Chrome")) {
-				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") +"\\config_Drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +"\\config_Drivers\\chromedriver.exe");
 				driver = new ChromeDriver();			
 
 			} else if (Browser.equalsIgnoreCase("Firefox")) {
 				System.setProperty("webdriver.gecko.driver",
-						"D:\\Automation_WorkSpace\\HYD_POLICE\\config_Drivers\\geckodriver.exe");
+						System.getProperty("user.dir") + "\\config_Drivers\\geckodriver.exe");
 				driver = new FirefoxDriver();				
 
 			} else if (Browser.equalsIgnoreCase("Opera")) {
 				System.setProperty("webdriver.opera.driver",
-						"D:\\Automation_WorkSpace\\HYD_POLICE\\config_Drivers\\operadriver.exe");
+						System.getProperty("user.dir") + "\\config_Drivers\\operadriver.exe");
 				driver = new OperaDriver();
 			}
 

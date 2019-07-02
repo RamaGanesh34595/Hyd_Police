@@ -4,8 +4,10 @@
 
 	<test name="Hyderabad Police Login and Logout Scenario">
 		<classes>
+			<class name="test_Cases.LoginAndLogout"></class>		
 			<class name="test_Cases.Add_User"></class>
 		</classes>
+		
 	</test>
 
 </suite>

@@ -1,5 +1,7 @@
 package util_Base;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
@@ -48,6 +50,9 @@ public class Base_Util {
 	
 	public static ExtentTest test;
 	 //= extent.createTest("Google Search test one", "This is a validate google statement");
+	
+	public static String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
+	
 
 	
 }
