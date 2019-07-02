@@ -96,7 +96,7 @@ public class KeywordActions extends Base_Util {
 
 	public KeywordActions() throws IOException {
 		prop = new Properties();
-		File file = new File("C:\\Users\\User\\git\\repository\\HYD_POLICE\\src\\config_Data\\Object_Xpath.properties");
+		File file = new File(System.getProperty("user.dir") + "\\src\\config_Data\\Object_Xpath.properties");
 		FileInputStream fis = new FileInputStream(file);
 		prop.load(fis);
 	}
@@ -114,36 +114,29 @@ public class KeywordActions extends Base_Util {
 
 		try {
 			if (Browser.equalsIgnoreCase("Chrome")) {
-				System.setProperty("webdriver.chrome.driver",
-						"C:\\Users\\User\\git\\repository\\HYD_POLICE\\config_Drivers\\chromedriver.exe");
-				driver = new ChromeDriver();
-				// test.log(Status.INFO, "Browser has initiated");
+				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") +"\\config_Drivers\\chromedriver.exe");
+				driver = new ChromeDriver();			
 
 			} else if (Browser.equalsIgnoreCase("Firefox")) {
 				System.setProperty("webdriver.gecko.driver",
 						"D:\\Automation_WorkSpace\\HYD_POLICE\\config_Drivers\\geckodriver.exe");
-				driver = new FirefoxDriver();
-				// test.log(Status.INFO, "Browser has initiated");
+				driver = new FirefoxDriver();				
 
 			} else if (Browser.equalsIgnoreCase("Opera")) {
 				System.setProperty("webdriver.opera.driver",
 						"D:\\Automation_WorkSpace\\HYD_POLICE\\config_Drivers\\operadriver.exe");
 				driver = new OperaDriver();
-				// test.log(Status.INFO, "Browser has initiated");
 			}
 
 			driver.manage().window().maximize();
-			//test.log(Status.INFO, "Browser has initiated");
 			System.out.println("User is able to open a browser");
 			return "PASS - User is able to open " + Browser + " browser";
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("User is not able to open a browser");
-			// test.log(Status.INFO, "Browser has not initiated");
+			System.out.println("User is not able to open a browser");	
 			return "FAIL - User is able to open " + Browser + " browser";
 		}
-
 	}
 
 	// Navigate url
