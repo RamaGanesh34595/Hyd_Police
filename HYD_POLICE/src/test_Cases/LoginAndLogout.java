@@ -27,7 +27,7 @@ public class LoginAndLogout extends KeywordActions{
 	
 	@BeforeTest
 	public void beforeTest() {
-		htmlRporter = new ExtentHtmlReporter((System.getProperty("user.dir")) + "\\ExtentReports\\extent_Reports" + timestamp + ".html");
+		htmlRporter = new ExtentHtmlReporter((System.getProperty("user.dir")) + "\\ExtentReports\\SeleniumExtentReport_" + timestamp + ".html");
 		extent = new ExtentReports();
 		extent.attachReporter(htmlRporter);
 		test  = extent.createTest("Hyderabad Police", "This is a validation page of Login Module ");

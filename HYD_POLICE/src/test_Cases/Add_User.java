@@ -28,7 +28,7 @@ public class Add_User extends KeywordActions {
 	
 	@BeforeTest
 	public void beforeTest() {
-		htmlRporter = new ExtentHtmlReporter((System.getProperty("user.dir")) + "\\ExtentReports\\extent_Reports.html");
+		htmlRporter = new ExtentHtmlReporter((System.getProperty("user.dir")) + "\\ExtentReports\\SeleniumExtentReport_" + timestamp + ".html");
 		extent = new ExtentReports();
 		extent.attachReporter(htmlRporter);
 		test  = extent.createTest("Google Search test one", "This is a validate google statement");

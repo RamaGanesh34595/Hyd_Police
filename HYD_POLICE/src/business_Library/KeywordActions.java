@@ -31,10 +31,9 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import test_Cases.extent_Reports;
 import util_Base.Base_Util;
 
-public class KeywordActions extends Base_Util {
+public class KeywordActions extends Base_Util {	
 
-	public static KeywordActions Action;
-
+	//************** EXECUTE KEYWORD *************************
 	public static void executeKeyword(String testName) {
 		try {
 			rowCount = xls.getRowCount("TestSteps");
@@ -94,6 +93,7 @@ public class KeywordActions extends Base_Util {
 
 	}
 
+	//************** KEYWORD ACTIONS *************************
 	public KeywordActions() throws IOException {
 		prop = new Properties();
 		File file = new File(System.getProperty("user.dir") + "\\src\\config_Data\\Object_Xpath.properties");
@@ -101,6 +101,7 @@ public class KeywordActions extends Base_Util {
 		prop.load(fis);
 	}
 
+	//************** GET ACTION INSTANCE **********************
 	public static KeywordActions getActionInstance() throws Exception {
 
 		if (Action == null) {
@@ -109,22 +110,19 @@ public class KeywordActions extends Base_Util {
 		return Action;
 	}
 
-	// Launch browser
+	// ****************** OPEN BROSER ****************************
 	public static String openBrowser(String Browser) {
-
 		try {
 			if (Browser.equalsIgnoreCase("Chrome")) {
 				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +"\\config_Drivers\\chromedriver.exe");
 				driver = new ChromeDriver();			
 
 			} else if (Browser.equalsIgnoreCase("Firefox")) {
-				System.setProperty("webdriver.gecko.driver",
-						System.getProperty("user.dir") + "\\config_Drivers\\geckodriver.exe");
+				System.setProperty("webdriver.gecko.driver",  System.getProperty("user.dir") + "\\config_Drivers\\geckodriver.exe");
 				driver = new FirefoxDriver();				
 
 			} else if (Browser.equalsIgnoreCase("Opera")) {
-				System.setProperty("webdriver.opera.driver",
-						System.getProperty("user.dir") + "\\config_Drivers\\operadriver.exe");
+				System.setProperty("webdriver.opera.driver", 	System.getProperty("user.dir") + "\\config_Drivers\\operadriver.exe");
 				driver = new OperaDriver();
 			}
 
@@ -139,7 +137,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// Navigate url
+	//******************NAVIGATE URL ****************************
 	public static String navigateUrl(String url) {
 		try {
 			driver.get(url);
@@ -153,6 +151,7 @@ public class KeywordActions extends Base_Util {
 
 	}
 
+	//**********************NEW TAB *****************************
 	public static String newTab() {
 		try {
 			WebElement body = driver.findElement(By.tagName("body"));
@@ -165,7 +164,8 @@ public class KeywordActions extends Base_Util {
 
 		}
 	}
-
+	
+	//************* SWITH WINDOW **************
 	public static String switchWindow(String app) {
 		try {
 			if (app.equalsIgnoreCase("Assist")) {
@@ -189,13 +189,12 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// taking screen shots:
+	// ************* TAKE SCREENSHOT**************
 	public static String takeScreenShot(String val) {
 		try {
-
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile,
-					new File((System.getProperty("user.dir")) + "\\test-output\\ScreenShots\\SS_" + val + ".png"));
+					new File((System.getProperty("user.dir")) + "\\test-output\\ScreenShots\\SS_" + val +"_"+ timestamp + ".jpeg"));
 			exceldata = "PASS--Screen shot saved to ScreenShots folder";
 			return exceldata;
 		} catch (Exception e) {
@@ -205,6 +204,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
+	//************* ALERT HANDLING ****************
 	public static String alertHandle() {
 		try {
 			Alert alert = driverAssit.switchTo().alert();
@@ -218,6 +218,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
+	//************* iFrame Button Click **************
 	public static String iFrameBtnclick(String xobjpath) {
 		try {
 			while (true) {
@@ -238,6 +239,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
+	//************* iFrame Switch **********************
 	public static String iFrameSwitch(String xobjpath, String app) {
 		try {
 			if (app.equalsIgnoreCase("assist")) {
@@ -258,6 +260,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
+	//**************iFrame Alert Click ********************
 	public static String iFrameAlertclick(String xobjpath) {
 		try {
 			driverAssit.switchTo().frame(sliderIframe);
@@ -277,6 +280,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
+	// *************** TAB HANDLING *******************
 	public static String tabHandling() {
 		try {
 			ArrayList<String> tabs = new ArrayList(driver.getWindowHandles());
@@ -293,7 +297,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// Enter text value
+	//*******************ENTER TEXT **********************************
 	public static String enterText(String xpathValue, String enterVale) {
 		try {
 			element = driver.findElement(By.xpath(prop.getProperty(xpathValue)));
@@ -307,7 +311,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// Click button
+	//*********************CLICK BUTTON ****************************
 	public static String clickButton(String btnValue) {
 		try {
 			element = driver.findElement(By.xpath(prop.getProperty(btnValue)));
@@ -321,7 +325,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// Click Link
+	//******************** CLICK LINK *********************************
 	public static String clickLink(String LinkValue) {
 		try {
 			element = driver.findElement(By.xpath(prop.getProperty(LinkValue)));
@@ -335,7 +339,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// Select an item from the dropdowns
+	//******************** SELECT ITEM *******************************
 	public static String selectItem(String xpathValue, String selectValue) {
 		try {
 			element = driver.findElement(By.xpath(prop.getProperty(xpathValue)));
@@ -348,7 +352,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// MouseHover
+	//********************MOUSE HOVER ***************************
 	public static String mouseHover(String MenuLink) {
 		try {
 			element = driver.findElement(By.xpath(prop.getProperty(MenuLink)));
@@ -365,7 +369,7 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// Wait Time
+	//******************* WAIT TIME ********************************
 	public static String waitTime(String waitSeconds) throws Exception {
 		try {
 			int waitTime = Integer.parseInt(waitSeconds);
@@ -377,9 +381,8 @@ public class KeywordActions extends Base_Util {
 		}
 	}
 
-	// Window Handles
+	//******************** WINDOW HANDLES *********************
 	public void windowHandles() throws Exception {
-
 		driver.findElement(By.xpath("Website")).click();
 		Thread.sleep(5000);
 		mainwindow = driver.getWindowHandle();
@@ -401,7 +404,7 @@ public class KeywordActions extends Base_Util {
 
 	}
 
-	// Close browser
+	//********************* CLOSE BROWSER *************************
 	public static String closeBrower() {
 		try {
 			driver.close();
