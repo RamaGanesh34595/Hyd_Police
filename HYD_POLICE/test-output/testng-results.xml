@@ -1,39 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Hyderabad Police" duration-ms="71564" started-at="2019-07-02T07:25:06Z" finished-at="2019-07-02T07:26:18Z">
+  <suite name="Default suite" duration-ms="109762" started-at="2019-08-31T09:26:38Z" finished-at="2019-08-31T09:28:28Z">
     <groups>
     </groups>
-    <test name="Hyderabad Police Login and Logout Scenario" duration-ms="71564" started-at="2019-07-02T07:25:06Z" finished-at="2019-07-02T07:26:18Z">
-      <class name="test_Cases.LoginAndLogout">
-        <test-method status="PASS" signature="LoginMethod()[pri:0, instance:test_Cases.LoginAndLogout@363ee3a2]" name="LoginMethod" duration-ms="10520" started-at="2019-07-02T12:55:07Z" finished-at="2019-07-02T12:55:17Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- LoginMethod -->
-      </class> <!-- test_Cases.LoginAndLogout -->
+    <test name="Default test" duration-ms="109762" started-at="2019-08-31T09:26:38Z" finished-at="2019-08-31T09:28:28Z">
       <class name="test_Cases.Add_User">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:test_Cases.Add_User@7ce3cb8e]" name="beforeTest" is-config="true" duration-ms="156" started-at="2019-07-02T12:55:06Z" finished-at="2019-07-02T12:55:07Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:test_Cases.Add_User@309e345f]" name="beforeTest" is-config="true" duration-ms="164" started-at="2019-08-31T14:56:38Z" finished-at="2019-08-31T14:56:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:test_Cases.LoginAndLogout@363ee3a2]" name="beforeTest" is-config="true" duration-ms="1" started-at="2019-07-02T12:55:07Z" finished-at="2019-07-02T12:55:07Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="LoginMethod()[pri:0, instance:test_Cases.Add_User@7ce3cb8e]" name="LoginMethod" duration-ms="60510" started-at="2019-07-02T12:55:17Z" finished-at="2019-07-02T12:56:18Z">
+        <test-method status="PASS" signature="LoginMethod()[pri:0, instance:test_Cases.Add_User@309e345f]" name="LoginMethod" duration-ms="108997" started-at="2019-08-31T14:56:38Z" finished-at="2019-08-31T14:58:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginMethod -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:test_Cases.Add_User@7ce3cb8e]" name="afterTest" is-config="true" duration-ms="290" started-at="2019-07-02T12:56:18Z" finished-at="2019-07-02T12:56:18Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterTest -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:test_Cases.LoginAndLogout@363ee3a2]" name="afterTest" is-config="true" duration-ms="77" started-at="2019-07-02T12:56:18Z" finished-at="2019-07-02T12:56:18Z">
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:test_Cases.Add_User@309e345f]" name="afterTest" is-config="true" duration-ms="573" started-at="2019-08-31T14:58:27Z" finished-at="2019-08-31T14:58:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
       </class> <!-- test_Cases.Add_User -->
-    </test> <!-- Hyderabad Police Login and Logout Scenario -->
-  </suite> <!-- Hyderabad Police -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
